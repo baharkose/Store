@@ -31,25 +31,24 @@ dbConnection();
 // ! 3 Şimdi sıra middleware kullanımında
 app.use(express.json());
 
-app.all('/', (req, res) => {
-    res.send({
-        error: false,
-        message: 'Welcome to PERSONNEL API',
-        // session: req.session,
-        // isLogin: req.isLogin
-    })
-})
+app.all("/", (req, res) => {
+  res.send({
+    error: false,
+    message: "Welcome to PERSONNEL API",
+    // session: req.session,
+    // isLogin: req.isLogin
+  });
+});
 
 // Route işlemleri
-app.use("/products", require("./src/routes/productsRoutes"))
+app.use("/products", require("./src/routes/productsRoutes"));
+app.use("/categories", require("./src/routes/categoryRoutes"));
 
 // ! errorHandler
 app.use(require("./errorHandler"));
 
-
-
 // RUN SERVER:
-app.listen(PORT, () => console.log('http://127.0.0.1:' + PORT))
+app.listen(PORT, () => console.log("http://127.0.0.1:" + PORT));
 
 // Syncronization
-require("./src/helpers/sync")
+require("./src/helpers/sync");
