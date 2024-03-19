@@ -5,10 +5,12 @@
 
 // required modules
 // ! 1 gruplandırarak yazalım
+// ! bütün model isimleri tekil isimlendirilir.
+//! boolean ifadelerde değişken isimleri is ön eki ile isimlendirilir.
 // - appin ayağa kalkması için en yukarıda requirementları yapalım. env ve portumuzu oladık. ve errorhandler tabi
 
 // oturum işlemi için - login logout işlemleri için cookie session kullanmamız gerekir.
-const cookieSession = require('cookie-session');
+const cookieSession = require("cookie-session");
 
 const express = require("express");
 const app = express();
@@ -17,12 +19,13 @@ require("dotenv").config();
 const PORT = process.env?.PORT || 8000;
 require("express-async-errors");
 
-
-app.use(cookieSession({
-  name: 'session',
-  keys: ['key1', 'key2'], // Güvenliği sağlamak için rastgele anahtarlar kullanın
-  maxAge: 24 * 60 * 60 * 1000 // 24 saatlik session süresi
-}));
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1", "key2"], // Güvenliği sağlamak için rastgele anahtarlar kullanın
+    maxAge: 24 * 60 * 60 * 1000, // 24 saatlik session süresi
+  })
+);
 
 // Cors integration
 const getCors = require("./src/middlewares/getCors");
