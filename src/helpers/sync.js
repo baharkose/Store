@@ -14,28 +14,39 @@ async function seedDatabase() {
   console.log("- Database and all data DELETED");
   // Kategorileri ve ürünleri oluşturun
   const categories = ["Elektronik", "Kıyafet", "Yiyecek", "Mobilya"];
-  const users = [
-    { email: "admin@aa.com", password: "admin" },
-    { email: "kullanici2@example.com", password: "sifre2" },
-    { email: "kullanici3@example.com", password: "sifre3" },
-    { email: "kullanici4@example.com", password: "sifre4" },
-    { email: "kullanici5@example.com", password: "sifre5" },
-    { email: "kullanici6@example.com", password: "sifre6" },
-    { email: "kullanici7@example.com", password: "sifre7" },
-    { email: "kullanici8@example.com", password: "sifre8" },
-    { email: "kullanici9@example.com", password: "sifre9" },
-    { email: "kullanici10@example.com", password: "sifre10" },
-    { email: "kullanici11@example.com", password: "sifre11" },
-    { email: "kullanici12@example.com", password: "sifre12" },
-    { email: "kullanici13@example.com", password: "sifre13" },
-    { email: "kullanici14@example.com", password: "sifre14" },
-    { email: "kullanici15@example.com", password: "sifre15" },
-    { email: "kullanici16@example.com", password: "sifre16" },
-    { email: "kullanici17@example.com", password: "sifre17" },
-    { email: "kullanici18@example.com", password: "sifre18" },
-    { email: "kullanici19@example.com", password: "sifre19" },
-    { email: "kullanici20@example.com", password: "sifre20" },
-  ];
+  // const users = [
+  //   { email: "admin@aa.com", password: "admin", isAdmin: true },
+  //   { email: "kullanici2@example.com", password: "sifre2" },
+  //   { email: "kullanici3@example.com", password: "sifre3" },
+  //   { email: "kullanici4@example.com", password: "sifre4" },
+  //   { email: "kullanici5@example.com", password: "sifre5" },
+  //   { email: "kullanici6@example.com", password: "sifre6" },
+  //   { email: "kullanici7@example.com", password: "sifre7" },
+  //   { email: "kullanici8@example.com", password: "sifre8" },
+  //   { email: "kullanici9@example.com", password: "sifre9" },
+  //   { email: "kullanici10@example.com", password: "sifre10" },
+  //   { email: "kullanici11@example.com", password: "sifre11" },
+  //   { email: "kullanici12@example.com", password: "sifre12" },
+  //   { email: "kullanici13@example.com", password: "sifre13" },
+  //   { email: "kullanici14@example.com", password: "sifre14" },
+  //   { email: "kullanici15@example.com", password: "sifre15" },
+  //   { email: "kullanici16@example.com", password: "sifre16" },
+  //   { email: "kullanici17@example.com", password: "sifre17" },
+  //   { email: "kullanici18@example.com", password: "sifre18" },
+  //   { email: "kullanici19@example.com", password: "sifre19" },
+  //   { email: "kullanici20@example.com", password: "sifre20" },
+  // ];
+
+  const users = [];
+  for (let i = 1; i <= 20; i++) {
+    const email = `kullanici${i}@example.com`;
+    const password = `sifre${i}`;
+    users.push({ email, password });
+  }
+  // admin kullanıcısını da ekleyelim
+  users.unshift({ email: "admin@aa.com", password: "admin", isAdmin: true });
+  console.log(users);
+
   // Kategorileri oluşturun
   for (const categoryName of categories) {
     const category = await Categories.create({ name: categoryName });

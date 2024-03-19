@@ -64,7 +64,7 @@ app.use(require("./errorHandler"));
 // RUN SERVER:
 app.listen(PORT, () => console.log("http://127.0.0.1:" + PORT));
 
-// Syncronization
+// Syncronization 
 // require("./src/helpers/sync");
 
 // app.use tamamen req ve res arasında gerçekleşir ama diğerleri normal fonksiyon middleware değil bir kez çalışır. ama middlewarelerda req ve res işlemlerinde tekrar tekrar çalışır.

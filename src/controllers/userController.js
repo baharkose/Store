@@ -35,6 +35,10 @@ module.exports = {
         // SESSION
         req.session.id = user.id;
         req.session.password = user.password;
+        // burada role tanımlama işlemleri yapılacak. req.session.isAdmin = true -> cookie'i çözümlediğimiz yerde kullanıcı bilgilerine ekleyeceğiz. Permission middlewareı olacak admin mi değil mi ona bakacağız.
+        // burada password ve id almak yerine kullanıcın diğer bilgilerini almak daha güvenlidir. Sonra istek attığımızda headers kısmından bu bilgileri tekrar çekip kullanabiliriz. Cookie vs. işlemleri için.
+
+        // req.session.role -> o esnadaki kullanıcın rolü buraya eklenecek.
 
         if (req.body?.remindMe) {
           req.session.remindMe = req.body.remindMe;

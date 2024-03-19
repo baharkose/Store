@@ -7,6 +7,7 @@
 const { mongoose } = require("../../db");
 const passwordEncrypt = require("../helpers/passwordEncrypte");
 
+// ! burda kaç tane rol varsa tanımlanacak, cookie içerisinde
 const UsersSchema = new mongoose.Schema(
   {
     // idyi kendisi veriyor
@@ -27,6 +28,10 @@ const UsersSchema = new mongoose.Schema(
       trim: true,
       required: true,
       set: (password) => passwordEncrypt(password),
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
   },
   {

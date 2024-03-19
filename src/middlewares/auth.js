@@ -9,4 +9,6 @@ module.exports = function(req, res, next) {
   
     next(); // Token geçerliyse, sonraki middleware'e geç
   };
+
+  // client tarafından istek atıldı , genel middleware burada cookieleri encode yapacağız. kullanacıların bilgisini alıp yollayacğaız.
   
