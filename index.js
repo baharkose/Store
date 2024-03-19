@@ -43,7 +43,7 @@ app.all("/", (req, res) => {
 // Route işlemleri
 app.use("/products", require("./src/routes/productsRoutes"));
 app.use("/categories", require("./src/routes/categoryRoutes"));
-app.use("/user", require("./src/routes/userRoutes"));
+app.use("/users", require("./src/routes/userRoutes"));
 
 // ! errorHandler
 app.use(require("./errorHandler"));
@@ -52,4 +52,4 @@ app.use(require("./errorHandler"));
 app.listen(PORT, () => console.log("http://127.0.0.1:" + PORT));
 
 // Syncronization
-require("./src/helpers/sync");
+// require("./src/helpers/sync");
