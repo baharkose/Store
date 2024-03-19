@@ -5,6 +5,7 @@
 ------------------------------------------------------- */
 
 const { mongoose } = require("../../db");
+const passwordEncrypt = require("../helpers/passwordEncrypte");
 
 const UsersSchema = new mongoose.Schema(
   {
@@ -16,13 +17,13 @@ const UsersSchema = new mongoose.Schema(
       unique: true,
       validate: (email) => email.includes("@") && email.includes("."),
     },
-    __v:Number,
-    pass:{
-        type:String,
-        trim:true,
-        required:true,
-        
-    }
+    __v: Number,
+    pass: {
+      type: String,
+      trim: true,
+      required: true,
+      set: (password) => passwordEncrypt(password),
+    },
   },
   {
     collection: "users",
