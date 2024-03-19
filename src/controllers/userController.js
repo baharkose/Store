@@ -10,14 +10,14 @@ const passwordEncrypt = require("../helpers/passwordEncrypte");
 
 module.exports = {
   list: async (req, res) => {
-    const data = User.find();
+    const data = await User.find();
     res.status(200).send({
       error: false,
       data,
     });
   },
   read: async (req, res) => {
-    const data = User.findOne({ _id: req.params.id });
+    const data = await User.findOne({ _id: req.params.id });
     res.status(202).send({
       error: false,
       data,
@@ -27,11 +27,11 @@ module.exports = {
   // ***  login - logout ***
 
   login: async (req, res) => {
-    const { email, pass } = req.body;
-    if (email && pass) {
+    const { email, password } = req.body;
+    if (email && password) {
       const user = await User.findOne({ email });
 
-      if (user && user.pass == passwordEncrypt(pass)) {
+      if (user && user.password == passwordEncrypt(password)) {
         // SESSION
         req.session.id = user.id;
         req.session.password = user.password;

@@ -7,12 +7,22 @@
 // ! 1 gruplandırarak yazalım
 // - appin ayağa kalkması için en yukarıda requirementları yapalım. env ve portumuzu oladık. ve errorhandler tabi
 
+// oturum işlemi için - login logout işlemleri için cookie session kullanmamız gerekir.
+const cookieSession = require('cookie-session');
+
 const express = require("express");
 const app = express();
 
 require("dotenv").config();
 const PORT = process.env?.PORT || 8000;
 require("express-async-errors");
+
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'], // Güvenliği sağlamak için rastgele anahtarlar kullanın
+  maxAge: 24 * 60 * 60 * 1000 // 24 saatlik session süresi
+}));
 
 // Cors integration
 const getCors = require("./src/middlewares/getCors");
@@ -52,6 +62,6 @@ app.use(require("./errorHandler"));
 app.listen(PORT, () => console.log("http://127.0.0.1:" + PORT));
 
 // Syncronization
-require("./src/helpers/sync");
+// require("./src/helpers/sync");
 
 // app.use tamamen req ve res arasında gerçekleşir ama diğerleri normal fonksiyon middleware değil bir kez çalışır. ama middlewarelerda req ve res işlemlerinde tekrar tekrar çalışır.
