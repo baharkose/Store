@@ -1,5 +1,5 @@
 // npm init -y
-// $ npm i express dotenv express-async-errors
+// $ npm i express dotenv express-async-errors cors
 // $ npm i mongoose
 //  npm i cookie-session
 
@@ -14,6 +14,13 @@ require("dotenv").config();
 const PORT = process.env?.PORT || 8000;
 require("express-async-errors");
 
+// Cors integration
+const getCors = require("./src/middlewares/getCors");
+const postCors = require("./src/middlewares/postCors");
+const auth = require("./src/middlewares/auth");
+
+app.use("/", getCors);
+
 // ! 2
 // Configurations - dbconnection
 // connect to db
@@ -23,3 +30,6 @@ dbConnection();
 
 // ! 3 Şimdi sıra middleware kullanımında
 app.use(express.json());
+
+// ! errorHandler
+app.use(require("./errorHandler"));
