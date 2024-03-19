@@ -6,29 +6,21 @@
 
 const { mongoose } = require("../../db");
 
-const UsersSchema = new mongoose.Schema(
+const CategorySchema = new mongoose.Schema(
   {
     // idyi kendisi veriyor
-    email: {
+
+    name: {
       type: String,
       trim: true,
       required: true,
-      unique: true,
-      validate: (email) => email.includes("@") && email.includes("."),
     },
-    __v:Number,
-    pass:{
-        type:String,
-        trim:true,
-        required:true,
-        
-    }
   },
   {
-    collection: "users",
+    collection: "category",
     timestamps: true,
     //createdAt, updatedAt eklendi.
   }
 );
 
-module.exports = mongoose.model("Users", UsersSchema);
+module.exports = mongoose.model("Products", CategorySchema);
