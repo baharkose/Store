@@ -31,7 +31,7 @@ module.exports = {
     if (email && pass) {
       const user = await User.findOne({ email });
 
-      if (user && user.password == passwordEncrypt(password)) {
+      if (user && user.pass == passwordEncrypt(pass)) {
         // SESSION
         req.session.id = user.id;
         req.session.password = user.password;
@@ -53,7 +53,7 @@ module.exports = {
       }
     } else {
       res.errorStatusCode = 401;
-      throw new Error("Email and passowrd are not true");
+      throw new Error("Email and password are not true");
     }
   },
 

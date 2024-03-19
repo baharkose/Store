@@ -22,7 +22,7 @@ const UsersSchema = new mongoose.Schema(
       ],
     },
     // __v: Number, otomatik geliyo
-    pass: {
+    password: {
       type: String,
       trim: true,
       required: true,
@@ -30,10 +30,10 @@ const UsersSchema = new mongoose.Schema(
     },
   },
   {
-    collection: "users",
+    collection: "user",
     timestamps: true,
     //createdAt, updatedAt eklendi.
   }
 );
 
-module.exports = mongoose.model("Users", UsersSchema);
+module.exports = mongoose.model("User", UsersSchema);

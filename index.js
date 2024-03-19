@@ -34,7 +34,7 @@ app.use(express.json());
 app.all("/", (req, res) => {
   res.send({
     error: false,
-    message: "Welcome to PERSONNEL API",
+    message: "Welcome to Store API",
     // session: req.session,
     // isLogin: req.isLogin
   });
@@ -52,4 +52,6 @@ app.use(require("./errorHandler"));
 app.listen(PORT, () => console.log("http://127.0.0.1:" + PORT));
 
 // Syncronization
-// require("./src/helpers/sync");
+require("./src/helpers/sync");
+
+// app.use tamamen req ve res arasında gerçekleşir ama diğerleri normal fonksiyon middleware değil bir kez çalışır. ama middlewarelerda req ve res işlemlerinde tekrar tekrar çalışır.
