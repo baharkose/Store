@@ -21,7 +21,7 @@ module.exports = async function () {
   const categories = ["Elektronik", "Kıyafet", "Yiyecek", "Mobilya"];
 
   const users = [
-    { email: "kullanici1@example.com", sifre: "sifre1" },
+    { email: "admin@aa.com", sifre: "admin" },
     { email: "kullanici2@example.com", sifre: "sifre2" },
     { email: "kullanici3@example.com", sifre: "sifre3" },
     { email: "kullanici4@example.com", sifre: "sifre4" },
@@ -58,7 +58,6 @@ module.exports = async function () {
           brand: "Abc",
           thumbnail: "resim",
           images: ["resim1", "resim2", "resim3"],
-          _v: 2,
         });
       }
     });
@@ -66,9 +65,9 @@ module.exports = async function () {
 
   users.forEach((value) => {
     console.log("users added");
-    Users.create({
+    User.create({
       email: value.email,
-      password: value.sifre,
+      pass: value.sifre,
     });
   });
 };

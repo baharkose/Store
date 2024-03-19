@@ -12,7 +12,7 @@ const ProductsSchema = new mongoose.Schema(
     category: {
       type: mongoose.Types.ObjectId,
       ref: "Category",
-      required: true,
+      required: false,
     },
     title: {
       type: String,
@@ -47,11 +47,8 @@ const ProductsSchema = new mongoose.Schema(
       trim: true,
     },
     images: {
-      type: Array,
+      type: [String],
     },
-
-    // ! burayı sor.
-    _v: Number,
   },
   {
     collection: "products",

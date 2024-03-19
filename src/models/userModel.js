@@ -17,7 +17,7 @@ const UsersSchema = new mongoose.Schema(
       unique: true,
       validate: (email) => email.includes("@") && email.includes("."),
     },
-    __v: Number,
+    // __v: Number, otomatik geliyo
     pass: {
       type: String,
       trim: true,

@@ -31,10 +31,25 @@ dbConnection();
 // ! 3 Şimdi sıra middleware kullanımında
 app.use(express.json());
 
+app.all('/', (req, res) => {
+    res.send({
+        error: false,
+        message: 'Welcome to PERSONNEL API',
+        // session: req.session,
+        // isLogin: req.isLogin
+    })
+})
+
+// Route işlemleri
+app.use("/products", require("./src/routes/productsRoutes"))
+
 // ! errorHandler
 app.use(require("./errorHandler"));
 
 
 
-// Syncronization (must be in commentLine):
+// RUN SERVER:
+app.listen(PORT, () => console.log('http://127.0.0.1:' + PORT))
+
+// Syncronization
 require("./src/helpers/sync")
