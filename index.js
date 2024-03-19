@@ -33,3 +33,8 @@ app.use(express.json());
 
 // ! errorHandler
 app.use(require("./errorHandler"));
+
+
+
+// Syncronization (must be in commentLine):
+require("./src/helpers/sync")
