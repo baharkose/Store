@@ -1,19 +1,15 @@
-const isAdmin = function (req, res, next) {
-  const token = req.headers["authorization"]; // Token genellikle Authorization header'ında taşınır
-  if (!token) {
-    return res.status(403).send({ message: "No token provided." });
-  }
+"use strict";
+/* -------------------------------------------------------
+    EXPRESS - STORE API
+------------------------------------------------------- */
 
-  
-
-  // Burada token'ı doğrulama işlemleri yapılabilir
-  // Örneğin, bir veritabanında token'ın geçerliliğini kontrol etmek
-
-  next(); // Token geçerliyse, sonraki middleware'e geç
+module.exports = {
+  isAdmin: (req, res, next) => {
+    if (req.user && req.user.isAdmin) {
+      nrext();
+    } else {
+      res.errorStatusCode = 403;
+      throw new Error("NoPermission: You must be Admin.");
+    }
+  },
 };
-
-
-
-// client tarafından istek atıldı , genel middleware burada cookieleri encode yapacağız. kullanacıların bilgisini alıp yollayacğaız.
-
-//   bu middlewarei
