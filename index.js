@@ -19,18 +19,19 @@ require("dotenv").config();
 const PORT = process.env?.PORT || 8000;
 require("express-async-errors");
 
+const session = require("cookie-session");
 app.use(
-  cookieSession({
-    name: "session",
-    keys: ["key1", "key2"], // Güvenliği sağlamak için rastgele anahtarlar kullanın
-    maxAge: 24 * 60 * 60 * 1000, // 24 saatlik session süresi
+  session({
+    secret: process.env.SECRET_KEY, // Şifreleme anahtarı
+    // maxAge: 1000 * 60 * 60 * 24 * 3  // miliseconds // 3 days
   })
 );
 
 // Cors integration
 const getCors = require("./src/middlewares/getCors");
-const postCors = require("./src/middlewares/postCors");
-const auth = require("./src/middlewares/auth");
+// const postCors = require("./src/middlewares/postCors");
+// const auth = require("./src/middlewares/auth");
+app.use(require("./src/middlewares/userControl"));
 
 app.use("/", getCors);
 
@@ -45,12 +46,20 @@ dbConnection();
 app.use(express.json());
 
 app.all("/", (req, res) => {
-  res.send({
-    error: false,
-    message: "Welcome to Store API",
-    // session: req.session,
-    // isLogin: req.isLogin
-  });
+  if (req.isLogin) {
+    res.send({
+      error: false,
+      message: "WELCOME STORE API PROJECT",
+      session: req.session,
+      user: req.user,
+    });
+  } else {
+    res.send({
+      error: true,
+      message: "WELCOME STORE API PROJECT",
+      session: req.session,
+    });
+  }
 });
 
 // Route işlemleri
@@ -64,7 +73,7 @@ app.use(require("./errorHandler"));
 // RUN SERVER:
 app.listen(PORT, () => console.log("http://127.0.0.1:" + PORT));
 
-// Syncronization 
+// Syncronization
 // require("./src/helpers/sync");
 
 // app.use tamamen req ve res arasında gerçekleşir ama diğerleri normal fonksiyon middleware değil bir kez çalışır. ama middlewarelerda req ve res işlemlerinde tekrar tekrar çalışır.

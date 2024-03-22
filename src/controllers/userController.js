@@ -42,6 +42,7 @@ module.exports = {
       if (user && user.password == passwordEncrypt(password)) {
         // SESSION
         req.session.id = user.id;
+        console.log(req.session);
         req.session.password = user.password;
         // burada role tanımlama işlemleri yapılacak. req.session.isAdmin = true -> cookie'i çözümlediğimiz yerde kullanıcı bilgilerine ekleyeceğiz. Permission middlewareı olacak admin mi değil mi ona bakacağız.
         // burada password ve id almak yerine kullanıcın diğer bilgilerini almak daha güvenlidir. Sonra istek attığımızda headers kısmından bu bilgileri tekrar çekip kullanabiliriz. Cookie vs. işlemleri için.
