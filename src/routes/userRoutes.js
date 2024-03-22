@@ -15,6 +15,6 @@ router.all("/logout", User.logout);
 
 // List & Read
 router.route("/").get(User.list);
-router.route("/:id").get(User.read);
+router.route("/:id").get(User.read).put(User.update);
 
 module.exports = router;

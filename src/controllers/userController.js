@@ -16,10 +16,18 @@ module.exports = {
       data,
     });
   },
+  update: async (req, res) => {
+    const data = await User.updateOne({ _id: req.params.id });
+  },
   read: async (req, res) => {
-    const data = await User.findOne({ _id: req.params.id });
-    res.status(202).send({
+    const data = await User.findOne({ _id: req.params.id }, req.body, {
+      runValidators: true,
+    });
+    const newData = await Products.findOne({ _id: req.params.id });
+    // modifiedCount bu kısımlar datanın içeriisnden kendisi geliyor. 209 hata vermesine , eğer güncellerse 1 güncellemezse 0 ama hata değil o nedenle aynı data gelmişse 209 hiç bişey olmadı. conflictsler 209
+    res.status(data.modifiedCount ? 202 : 209).send({
       error: false,
+      newData,
       data,
     });
   },
