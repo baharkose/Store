@@ -51,7 +51,7 @@ store/
 2. **Database Setup**:
    - Create your models according to the given ERD diagram.
 3. **Adding Sample Data to the Database:**
-   - To add sample data to the database, create a script. This script will add predefined product and category data to the database (Example data can be retrieved from the Dummy JSON API.). You can also add the admin user here. Admin user information: {"email":"admin@aa.com","pass":"admin"}.
+   - To add sample data to the database, create a script. This script will add predefined product and category data to the database (Example data can be retrieved from the Dummy JSON API.). You can also add the admin user here. Admin user information: {"email":"admin@aa.com","password":"admin"}.
 4. **Controller Creation:**
    - Create a userController to manage user operations. This controller will handle user login and logout operations.
    - Create productControllers to manage product and category operations. These controllers will only handle **listing and reading operations** for products and categories.
