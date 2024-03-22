@@ -10,6 +10,7 @@ const categories = require("../controllers/categoryController");
 
 // ! uzun yol
 const permissions = require("../middlewares/permission");
+const userControl = require("../middlewares/userControl");
 
 // ! kısayol
 // const { isAdmin } = require("../middlewares/permission");

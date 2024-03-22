@@ -15,6 +15,7 @@ module.exports = async (req, res, next) => {
 
         if (user && user.password == password) {
 
+            // ? başına req yazınca otomatik olarak her yerden ulaşılabilir hale geldi demektir.
             req.user = user
             req.isLogin = true
 
