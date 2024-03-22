@@ -9,6 +9,7 @@ const Categories = require("../models/categoryModel");
 const Products = require("../models/productsModel");
 const User = require("../models/userModel");
 async function seedDatabase() {
+  // return null;
   // REMOVE DATABASE
   await mongoose.connection.dropDatabase();
   console.log("- Database and all data DELETED");
