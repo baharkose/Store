@@ -19,20 +19,20 @@ const { isAdmin } = require("../middlewares/permission");
 
 // !uzun yol
 router
-  .route("/")
+  .route("/products")
   .get(permissions.isAdmin, products.list)
   .post(permissions.isAdmin, products.create);
 // sadece is Admin silebilir.
 // router.route("/:id").get(products.read).delete(isAdmin,products.delete); user da ise cookiedeki id ve userid aynı olmalı. Bunun içinde ayrı bir middleware yazılmalı.
 router
-  .route("/:id")
+  .route("/products/:id")
   .get(permissions.isAdmin, products.read)
   .delete(permissions.isAdmin, products.delete);
 
 router
-  .route("/")
+  .route("/categories")
   .get(permissions.isAdmin, categories.list)
   .post(permissions.isAdmin, categories.create);
-router.route("/:id").get(permissions.isAdmin, categories.read);
+router.route("/categories/:id").get(permissions.isAdmin, categories.read);
 
 module.exports = router;

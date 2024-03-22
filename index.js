@@ -62,10 +62,17 @@ app.all("/", (req, res) => {
   }
 });
 
+// 
+// Filter, Search, Sort, Pagination:  Bu routeların üstünde olmalıdır.
+app.use(require("./src/middlewares/findSearchSortPage"));
+
 // Route işlemleri
 app.use("/products", require("./src/routes/productsRoutes"));
 app.use("/categories", require("./src/routes/categoryRoutes"));
 app.use("/users", require("./src/routes/userRoutes"));
+app.use("/admin", require("./src/routes/adminRoutes"));
+
+
 
 // ! errorHandler
 app.use(require("./errorHandler"));

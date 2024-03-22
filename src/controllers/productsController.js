@@ -6,10 +6,29 @@
 const Products = require("../models/productsModel");
 
 module.exports = {
+  //   list: async (req, res) => {
+  //     // const data = await BlogCategory.find()
+  //     const data = await res.getModelList(BlogCategory)
+  //     res.status(200).send({
+  //         error: false,
+  //         details: await res.getModelListDetails(BlogCategory),
+  //         data: data
+  //     })
+  // },
+
   list: async (req, res) => {
-    const data = await Products.find();
+    const data = await res.getModelList(Products);
     res.status(200).send({
       error: false,
+      details: await res.getModelListDetails(Products),
+      // detailste geldi. detailse bana neler yapıldığını getiriyor.
+      // "search": {},
+      // "sort": {},
+      // "skip": 0,
+      // "limit": 30,
+      // "page": 0,
+      // "pages": false,
+      // "totalRec
       data,
     });
   },

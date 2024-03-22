@@ -7,15 +7,23 @@ const Categories = require("../models/categoryModel");
 
 module.exports = {
   list: async (req, res) => {
-    const data = await Categories.find();
+    const data = await res.getModelList(Categories);
     res.status(200).send({
       error: false,
+      details: await res.getModelListDetails(Categories),
+      // detailste geldi. detailse bana neler yapıldığını getiriyor.
+      // "search": {},
+      // "sort": {},
+      // "skip": 0,
+      // "limit": 30,
+      // "page": 0,
+      // "pages": false,
+      // "totalRec
       data,
     });
   },
-
   create: async (req, res) => {
-    // burda mongoose kendi hata forlatıyor. Bizim yazmamıza gerek yok. 
+    // burda mongoose kendi hata forlatıyor. Bizim yazmamıza gerek yok.
     const data = await Categories.create(req.body);
     res.status(201).send({
       error: false,
